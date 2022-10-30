@@ -20,7 +20,10 @@ const Review = () => {
 
     const randomReview = () => {
         const max = people.length - 1;
-        const random_index = Math.floor(Math.random() * max);
+        let random_index = Math.floor(Math.random() * max);
+        while (random_index === index) {
+            random_index = Math.floor(Math.random() * max);
+        }
         setIndex(random_index);
     };
 
