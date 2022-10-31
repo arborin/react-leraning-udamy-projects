@@ -8,7 +8,11 @@ function App() {
     const [categories, setCategories] = useState([]);
 
     const filterItems = (category) => {
-        console.log(category);
+        if (category === "all") {
+            setMenuItems(items);
+            return true;
+        }
+
         const newItems = items.filter((item) => {
             return item.category === category;
         });
@@ -17,15 +21,14 @@ function App() {
     };
 
     return (
-        <main>
+        <section className="menu section">
             <div className="title">
                 <h2>our menu</h2>
                 <div className="underline"></div>
-
-                <Categories filterItems={filterItems} />
-                <Menu items={menuItems} />
             </div>
-        </main>
+            <Categories categories={categories} filterItems={filterItems} />
+            <Menu items={menuItems} />
+        </section>
     );
 }
 
