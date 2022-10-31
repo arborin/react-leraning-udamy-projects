@@ -1,20 +1,9 @@
 import React from "react";
 
-const List = ({ people }) => {
+const List = () => {
     return (
         <>
-            {people.map((preosn) => {
-                const { id, name, age, image } = preosn;
-                return (
-                    <article key={id} className="person">
-                        <img src={image} alt={name} />
-                        <div>
-                            <h4>{name}</h4>
-                            <p>{age}</p>
-                        </div>
-                    </article>
-                );
-            })}
+            <h2>list component</h2>
         </>
     );
 };
