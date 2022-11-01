@@ -15,6 +15,13 @@ function App() {
             setIndex(0);
         }
     }, [index, people]);
+
+    useEffect(() => {
+        setInterval(() => {
+            setIndex(index + 1);
+        }, 3000);
+    });
+
     return (
         <section className="section">
             <div className="title">
