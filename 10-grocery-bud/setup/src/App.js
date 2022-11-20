@@ -8,9 +8,9 @@ function App() {
     const [isEditing, setIsEditing] = useState(false);
     const [editID, setEditID] = useState(null);
     const [alert, setAlert] = useState({
-        show: true,
-        msg: "111",
-        type: "danger",
+        show: false,
+        msg: "",
+        type: "",
     });
 
     const handleSubmit = (e) => {
@@ -20,6 +20,18 @@ function App() {
             showAlert(true, "please enter value", "danger");
         } else if (name && isEditing) {
             // EDIT
+            setList(
+                list.map((item) => {
+                    if (item.id === editID) {
+                        return { ...item, title: name };
+                    }
+                    return item;
+                })
+            );
+
+            setName("");
+            setIsEditing(false);
+            setEditID(null);
         } else {
             // SHOW ALERT
             showAlert(true, "Item edded", "success");
@@ -51,6 +63,13 @@ function App() {
         );
     };
 
+    const editItem = (id) => {
+        const specificItem = list.find((item) => item.id === id);
+        setIsEditing(true);
+        setEditID(id);
+        setName(specificItem.title);
+    };
+
     return (
         <section className="section-center">
             <form className="crocery-form" onSubmit={handleSubmit}>
@@ -72,7 +91,11 @@ function App() {
             </form>
             {list.length > 0 && (
                 <div className="grocery-container">
-                    <List items={list} removeItem={removeItem} />
+                    <List
+                        items={list}
+                        removeItem={removeItem}
+                        editItem={editItem}
+                    />
                     <button className="clear-btn" onClick={clearLIst}>
                         clear items
                     </button>
