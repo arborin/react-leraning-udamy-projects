@@ -5,6 +5,14 @@ import logo from "./logo.svg";
 
 const Navbar = () => {
     const [showLinks, setShowLinks] = useState(false);
+    const linksContainerRef = useRef(null);
+    const linksRef = useRef();
+
+    useEffect(() => {
+        const linksHeight = linksRef; //.current.getBoundingClinetRect();
+        console.log(linksHeight);
+    }, [showLinks]);
+
     return (
         <nav>
             <div className="nav-center">
@@ -27,16 +35,21 @@ const Navbar = () => {
                                 : "links-container"
                         } `}
                     >
-                        <ul className="links">
-                            {links.map((link) => {
-                                const { id, url, text } = link;
-                                return (
-                                    <li key={id}>
-                                        <a href={url}>{text}</a>
-                                    </li>
-                                );
-                            })}
-                        </ul>
+                        <div
+                            className="links-container"
+                            ref={linksContainerRef}
+                        >
+                            <ul className="links" ref={linksRef}>
+                                {links.map((link) => {
+                                    const { id, url, text } = link;
+                                    return (
+                                        <li key={id}>
+                                            <a href={url}>{text}</a>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
                     </div>
                 )}
                 <ul className="social-icons">
