@@ -8,6 +8,7 @@ const AppProvider = ({ children }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openSidebar = () => {
+        console.log("OPEN SIDEBAR");
         setIsSidebarOpen(true);
     };
 
